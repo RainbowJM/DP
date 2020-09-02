@@ -23,6 +23,7 @@ public class Main {
             Connection conn = DriverManager.getConnection(url, "postgres", "1234qwer");
             ReizigerDAO rdao = new ReizigerDAOPsql(conn);
             testReizigerDAO(rdao);
+            testAdresDAO(rdao);
         } catch (SQLException e){
             System.err.println("[SQLException] " + e.getMessage());
         }
@@ -67,4 +68,7 @@ public class Main {
         // Voeg aanvullende tests van de ontbrekende CRUD-operaties in.
     }
 
+    private static void testAdresDAO(ReizigerDAO rdao) throws SQLException {
+
+    }
 }
