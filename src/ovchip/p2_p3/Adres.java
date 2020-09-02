@@ -4,8 +4,8 @@ public class Adres {
     private int id;
     private String postcode;
 
-    public Adres(){
-    }
+//    public Adres(){
+//    }
 
     //getters
     public int getId() {
