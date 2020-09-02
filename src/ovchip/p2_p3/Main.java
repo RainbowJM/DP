@@ -1,34 +1,20 @@
 package ovchip.p2_p3;
 
-
-import ovchip.p2_p3.Reiziger;
-import ovchip.p2_p3.ReizigerDAO;
-
 import java.sql.*;
 import java.util.List;
 
 public class Main {
-    private Connection connection;
+    private static Connection connection;
 
     public static void main(String[] args) {
-        String url = "jdbc:postgresql://localhost:5433/ovchip";
-        try {
-            Connection conn = DriverManager.getConnection(url, "postgres", "1234qwer");
-
-            Statement stat = conn.createStatement();
-            String query = "SELECT * from reiziger";
-
-            ResultSet rs = stat.executeQuery(query);
-
-            while (rs.next()) {
-                String reisId = rs.getString("reiziger_id");
-                String le = rs.getString("voorletters");
-                String anaam = rs.getString("achternaam");
-                System.out.println(reisId + " " + le + ". " + anaam);
-            }
-        } catch (SQLException sql) {
-            System.err.println("[SQL Exception] " + sql.getMessage());;
+        try{
+           getConnection();
+        }catch (Exception e){
+            System.err.println("[Exception] " + e.getMessage());
+            closeConnection();
         }
+
+
     }
 
     private static Connection getConnection(){
@@ -36,14 +22,20 @@ public class Main {
         try {
             Connection conn = DriverManager.getConnection(url, "postgres", "1234qwer");
             ReizigerDAO rdao = new ReizigerDAOPsql(conn);
+            testReizigerDAO(rdao);
         } catch (SQLException e){
             System.err.println("[SQLException] " + e.getMessage());
         }
         return null;
     }
 
-    private static void closeConnection(Connection conn) throws SQLException {
-        conn.close();
+    private static void closeConnection() {
+        try {
+            connection.close();
+        }catch (SQLException e){
+            System.err.println("[SQLExcepton] " + e.getMessage());
+        }
+
     }
 
     /**
