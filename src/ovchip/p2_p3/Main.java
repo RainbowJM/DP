@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.List;
 
 public class Main {
+    private Connection connection;
 
     public static void main(String[] args) {
         String url = "jdbc:postgresql://localhost:5433/ovchip";
@@ -34,16 +35,17 @@ public class Main {
         String url = "jdbc:postgresql://localhost:5433/ovchip";
         try {
             Connection conn = DriverManager.getConnection(url, "postgres", "1234qwer");
-            return conn;
+            ReizigerDAO rdao = new ReizigerDAOPsql(conn);
         } catch (SQLException e){
             System.err.println("[SQLException] " + e.getMessage());
         }
         return null;
     }
 
-    private static void closeConnection(){
-
+    private static void closeConnection(Connection conn) throws SQLException {
+        conn.close();
     }
+
     /**
      * P2. Reiziger DAO: persistentie van een klasse
      *
