@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ReizigerDAOPsql implements ReizigerDAO {
     private final Connection conn;
-
+    private AdresDAO adao;
 
     public ReizigerDAOPsql(Connection conn){
         this.conn = conn;
