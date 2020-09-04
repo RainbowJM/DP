@@ -6,7 +6,7 @@ public class Adres {
     private String huisnummer;
     private String straat;
     private String woonplaats;
-    private Reiziger reiziger;
+    private int reiziger_id;
 
 //    public Adres(){
 //    }
@@ -32,8 +32,8 @@ public class Adres {
         return woonplaats;
     }
 
-    public Reiziger getReiziger() {
-        return reiziger;
+    public int getReiziger_id() {
+        return reiziger_id;
     }
 
     //setters
@@ -57,8 +57,8 @@ public class Adres {
         this.woonplaats = woonplaats;
     }
 
-    public void setReiziger(Reiziger reiziger) {
-        this.reiziger = reiziger;
+    public void setReiziger_id(int reiziger_id) {
+        this.reiziger_id = reiziger_id;
     }
 
     @Override
