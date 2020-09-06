@@ -38,7 +38,7 @@ public class ReizigerDAOPsql implements ReizigerDAO {
     @Override
     public boolean update(Reiziger reiziger) {
         try {
-            String query = "UPDATE reiziger SET voorletters = ?, tussenvoegsel = ?, achternaam = ?, geboortenaam = ? WHERE reiziger_id = ?;";
+            String query = "UPDATE reiziger SET voorletters = ?, tussenvoegsel = ?, achternaam = ?, geboortedatum = ? WHERE reiziger_id = ?;";
 
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setString(1, reiziger.getVoorletters());
