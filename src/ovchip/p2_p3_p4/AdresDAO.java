@@ -10,7 +10,9 @@ public interface AdresDAO {
 
     public boolean delete(Adres adres);
 
-    public Adres findByReiziger(Reiziger reiziger);
+    public Adres findById(int id);
+
+    public List<Adres> findByReiziger(Adres reiziger_id);
 
     public List<Adres> findAll();
 }
