@@ -2,6 +2,7 @@ package ovchip.p2_p3_p4;
 
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -105,10 +106,8 @@ public class ReizigerDAOPsql implements ReizigerDAO {
 
 
     @Override
-    // hoe moet je een list maken
     public List<Reiziger> findByGbdatum(String datum) {
-        // waarom werk alleen linkedlist en geen list
-        List<Reiziger> reizigers = new LinkedList<>();
+        List<Reiziger> reizigers = new ArrayList<>();
         try{
             String query = "SELECT * FROM reiziger WHERE geboortedatum = ?;";
 
@@ -141,7 +140,7 @@ public class ReizigerDAOPsql implements ReizigerDAO {
 
     @Override
     public List<Reiziger> findAll() {
-        List<Reiziger> reizigers = new LinkedList<>();
+        List<Reiziger> reizigers = new ArrayList<>();
         try {
             String query = "SELECT * FROM reiziger ORDER BY reiziger_id;";
 
