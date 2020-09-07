@@ -1,5 +1,6 @@
 package ovchip.p2_p3_p4;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -16,7 +17,8 @@ public class AdresDAOPsql implements AdresDAO{
     @Override
     public boolean save(Adres adres) {
         try {
-            String query = "";
+            String query = "INSERT INTO adres (id, postcode, huisnummer, straat, woonplaats, reiziger_id)" +
+                    "VALUES (?,?,?,?,?,?);";
 
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setInt(1, adres.getId());
@@ -24,7 +26,7 @@ public class AdresDAOPsql implements AdresDAO{
             pst.setString(3,adres.getHuisnummer());
             pst.setString(4,adres.getStraat());
             pst.setString(5, adres.getWoonplaats());
-//            pst.set(6, adres.getReiziger());
+            pst.setInt(6, adres.getReiziger_id());
 
             pst.executeUpdate();
             pst.close();
@@ -37,18 +39,53 @@ public class AdresDAOPsql implements AdresDAO{
 
     @Override
     public boolean update(Adres adres) {
-        return false;
+        try{
+            String query = "UPDATE adres SET  id = ?, postcode = ?, huisnummer = ?, straat = ?, woonplaats = ?, reiziger_id = ?";
+
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setInt(1, adres.getId());
+            pst.setString(2, adres.getPostcode());
+            pst.setString(3, adres.getHuisnummer());
+            pst.setString(4, adres.getStraat());
+            pst.setString(5, adres.getWoonplaats());
+            pst.setInt(6, adres.getReiziger_id());
+
+            pst.executeUpdate();
+            pst.close();
+            return true;
+        }catch (SQLException e){
+            System.err.println("[SQLException] " + e.getMessage());
+            return false;
+        }
     }
 
     @Override
     public boolean delete(Adres adres) {
-        return false;
+        try{
+            String query = "DELETE FROM adres WHERE id = ?;";
+
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setInt(1, adres.getId());
+
+            pst.executeUpdate();
+            pst.close();
+            return true;
+        }catch (SQLException e){
+            System.err.println("[SQLException] " + e.getMessage());
+            return false;
+        }
     }
 
     @Override
-    public Adres findByReiziger(Reiziger reiziger) {
+    public Adres findById(int id) {
         return null;
     }
+
+    @Override
+    public List<Adres> findByReiziger(Adres reiziger_id) {
+        return null;
+    }
+
 
     @Override
     public List<Adres> findAll() {
