@@ -1,7 +1,6 @@
 package ovchip.p2_p3_p4;
 
 import java.sql.Date;
-import java.util.List;
 
 public class Ov_chipkaart {
     private int kaart_nummer;
