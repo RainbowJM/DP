@@ -58,13 +58,53 @@ public class Main {
         }
         System.out.println();
 
-        // Maak een nieuwe reiziger aan en persisteer deze in de database
-        String gbdatum = "1981-03-14";
-        Reiziger sietske = new Reiziger(77, "S", "", "Boers", java.sql.Date.valueOf(gbdatum));
-        System.out.print("[Test] Eerst " + reizigers.size() + " reizigers, na ReizigerDAO.save() ");
+        // Maak een nieuwe reizigers aan en persisteer deze in de database
+        String gbdatum1 = "1981-03-14";
+        Reiziger sietske = new Reiziger(77, "S", "", "Boers", java.sql.Date.valueOf(gbdatum1));
         rdao.save(sietske);
+//        rdao.delete(sietske);
+
+        String gbdatum2 = "2000-07-22";
+        Reiziger ellen = new Reiziger(50, "E", "L", "Lopez", java.sql.Date.valueOf(gbdatum2));
+        rdao.save(ellen);
+//        rdao.delete(ellen);
+
+        System.out.print("[Test] Eerst " + reizigers.size() + " reizigers, na ReizigerDAO.save() ");
+        System.out.println("\n----------------------------");
+
+        // Haal alle reizigers op uit de database
+        List<Reiziger> nReizigers = rdao.findAll();
+        System.out.println("[Test] ReizigerDAO.findAll() geeft de volgende reizigers:");
+        for (Reiziger r : nReizigers) {
+            System.out.println(r);
+        }
+        System.out.println();
+
         reizigers = rdao.findAll();
         System.out.println(reizigers.size() + " reizigers\n");
+        System.out.println("\n----------------------------");
+
+        // Delete de net aangemaakt reiziger
+        rdao.delete(ellen);
+        reizigers = rdao.findAll();
+        System.out.println(reizigers.size() + " reizigers na het verwijderen van de net aangemaakt reiziger\n");
+        System.out.println("\n----------------------------");
+
+        // Update reiziger -!!
+//        sietske =
+        rdao.update(sietske);
+        System.out.println("\n----------------------------");
+
+        // Find by id
+        Reiziger reizigerId = rdao.findById(1);
+        System.out.println("[Test] ReizigerDAO.findById() geeft: " + reizigerId);
+        System.out.println();
+        System.out.println("\n----------------------------");
+
+        // Find by birthday -!!
+        List<Reiziger> reizigerG = rdao.findByGbdatum(gbdatum1);
+        System.out.println("[Test] ReizigerDAo.findByGbdatum() geeft \n" + reizigerG);
+        System.out.println("\n----------------------------");
 
         // Voeg aanvullende tests van de ontbrekende CRUD-operaties in.
     }
