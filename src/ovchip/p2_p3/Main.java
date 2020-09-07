@@ -82,7 +82,6 @@ public class Main {
 
         reizigers = rdao.findAll();
         System.out.println(reizigers.size() + " reizigers\n");
-        System.out.println("\n----------------------------");
 
         // Delete de net aangemaakt reiziger
         rdao.delete(ellen);
@@ -93,6 +92,7 @@ public class Main {
         // Update reiziger -!!
 //        sietske =
         rdao.update(sietske);
+        System.out.println("[Test] de updated versie van reiziger: " + sietske);
         System.out.println("\n----------------------------");
 
         // Find by id
