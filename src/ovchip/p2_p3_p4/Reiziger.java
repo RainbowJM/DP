@@ -2,6 +2,8 @@ package ovchip.p2_p3_p4;
 
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Reiziger {
     private int reiziger_id;
@@ -9,6 +11,7 @@ public class Reiziger {
     private String tussenvoegsel;
     private String achternaam;
     private Date geboortedatum;
+    private ArrayList<Ov_chipkaart> ov_chipkaarten = new ArrayList<Ov_chipkaart>();
 
     public Reiziger(int id, String fletters, String midden, String lletters, Date birthdate){
         reiziger_id = id;
@@ -18,6 +21,9 @@ public class Reiziger {
         geboortedatum = birthdate;
     }
 
+    public void voegOvChipkaarten(Ov_chipkaart nweOvChipkaart){
+        ov_chipkaarten.add(nweOvChipkaart);
+    }
     public int getReiziger_id() {
         return reiziger_id;
     }
