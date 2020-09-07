@@ -8,8 +8,14 @@ public class Adres {
     private String woonplaats;
     private int reiziger_id;
 
-//    public Adres(){
-//    }
+    public Adres(int id, String postcode, String huisnummer, String straat, String woonplaats, int reiziger_id) {
+        this.id = id;
+        this.postcode = postcode;
+        this.huisnummer = huisnummer;
+        this.straat = straat;
+        this.woonplaats = woonplaats;
+        this.reiziger_id = reiziger_id;
+    }
 
     //getters
     public int getId() {
