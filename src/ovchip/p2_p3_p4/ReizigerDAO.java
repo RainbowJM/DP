@@ -1,6 +1,4 @@
-package ovchip.p2_p3;
-
-import ovchip.p2_p3.Reiziger;
+package ovchip.p2_p3_p4;
 
 import java.util.List;
 

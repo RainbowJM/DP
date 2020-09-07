@@ -1,4 +1,4 @@
-package ovchip.p2_p3;
+package ovchip.p2_p3_p4;
 
 public class Adres {
     private int id;
