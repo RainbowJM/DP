@@ -1,9 +1,7 @@
 package ovchip.p2_p3_p4;
 
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdresDAOPsql implements AdresDAO{
@@ -89,6 +87,33 @@ public class AdresDAOPsql implements AdresDAO{
 
     @Override
     public List<Adres> findAll() {
-        return null;
+        List<Adres> adressen = new ArrayList<>();
+        try {
+            String query = "SE";
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            Adres adres;
+
+            while (rs.next()){
+                int idA = rs.getInt("id");
+                String ps = rs.getString("postcode");
+                String hn = rs.getString("huisnummer");
+                String s = rs.getString("straat");
+                String wp = rs.getString("woonplaats");
+                int idR = rs.getInt("reiziger_id");
+
+                adres = new Adres(idA, ps, hn, s, wp, idR);
+                adressen.add(adres);
+            }
+
+            st.close();
+            rs.close();
+            return adressen;
+        }catch (SQLException e){
+            System.err.println("[SQLException " + e.getMessage());
+            return null;
+        }
     }
 }
