@@ -76,6 +76,7 @@ public class AdresDAOPsql implements AdresDAO{
 
     @Override
     public Adres findById(int id) {
+        Adres adres = null;
         return null;
     }
 

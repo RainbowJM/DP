@@ -1,9 +1,7 @@
 package ovchip.p2_p3_p4;
 
-
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Reiziger {
     private int reiziger_id;
@@ -11,6 +9,7 @@ public class Reiziger {
     private String tussenvoegsel;
     private String achternaam;
     private Date geboortedatum;
+    private Adres adres;
     private ArrayList<Ov_chipkaart> ov_chipkaarten = new ArrayList<Ov_chipkaart>();
 
     public Reiziger(int id, String fletters, String midden, String lletters, Date birthdate){
@@ -24,11 +23,13 @@ public class Reiziger {
     public void voegOvChipkaarten(Ov_chipkaart nweOvChipkaart){
         ov_chipkaarten.add(nweOvChipkaart);
     }
+
+    // getters
+
     public int getReiziger_id() {
         return reiziger_id;
     }
 
-    //getters
     public String getVoorletters() {
         return voorletters;
     }
@@ -43,6 +44,10 @@ public class Reiziger {
 
     public Date getGeboortedatum() {
         return geboortedatum;
+    }
+
+    public Adres getAdres() {
+        return adres;
     }
 
     //setters
@@ -67,12 +72,18 @@ public class Reiziger {
         this.geboortedatum = geboortedatum;
     }
 
+    public void setAdres(Adres adres) {
+        this.adres = adres;
+    }
+
+    @Override
     public String toString() {
         return "Reiziger: " +
                 "reiziger_id= " + reiziger_id +
                 ", voorletters= " + voorletters +
                 ", tussenvoegsel= " + tussenvoegsel +
                 ", achternaam= " + achternaam +
-                ", geboortedatum= " + geboortedatum;
+                ", geboortedatum= " + geboortedatum +
+                ", adres= " + adres.toString();
     }
 }

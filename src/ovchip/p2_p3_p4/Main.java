@@ -8,7 +8,10 @@ public class Main {
 
     public static void main(String[] args) {
         try{
-           getConnection();
+            ReizigerDAO rdao = new ReizigerDAOPsql(getConnection());
+//            AdresDAO adao = new AdresDAOPsql(conn);
+            testReizigerDAO(rdao);
+//            testAdresDAO(adao);
         }catch (Exception e){
             System.err.println("[Exception] " + e.getMessage());
             closeConnection();
@@ -18,15 +21,12 @@ public class Main {
     private static Connection getConnection(){
         String url = "jdbc:postgresql://localhost:5433/ovchip";
         try {
-            Connection conn = DriverManager.getConnection(url, "postgres", "1234qwer");
-            ReizigerDAO rdao = new ReizigerDAOPsql(conn);
-            AdresDAO adao = new AdresDAOPsql(conn);
-            testReizigerDAO(rdao);
-            testAdresDAO(adao);
+            connection = DriverManager.getConnection(url, "postgres", "1234qwer");
+//            return connection;
         } catch (SQLException e){
             System.err.println("[SQLException] " + e.getMessage());
         }
-        return null;
+        return connection;
     }
 
     private static void closeConnection() {
@@ -35,7 +35,6 @@ public class Main {
         }catch (SQLException e){
             System.err.println("[SQLExcepton] " + e.getMessage());
         }
-
     }
 
     /**
@@ -102,49 +101,48 @@ public class Main {
         // Find by birthday
         List<Reiziger> reizigerG = rdao.findByGbdatum(gbdatum1);
         System.out.println("[Test] ReizigerDAo.findByGbdatum() geeft \n" + reizigerG);
-        System.out.println("\n----------------------------");
 
         // Voeg aanvullende tests van de ontbrekende CRUD-operaties in.
     }
 
-    private static void testAdresDAO(AdresDAO adao) throws SQLException {
-        System.out.println("\n---------- Test AdresDAO -------------");
-
-        // Haal alle reizigers op uit de database
-        List<Adres> adressen = adao.findAll();
-        System.out.println("[Test] AdresDAO.findAll() geeft de volgende adressen:");
-        for (Adres a : adressen) {
-            System.out.println(a);
-        }
-        System.out.println();
-
-        // Maak een nieuwe adressen aan en persisteer deze in de database
-        Adres a1 = new Adres(1, "3812RK", "13", "heidelberglaan", "Utrecht", 1);
-        adao.save(a1);
-        adao.delete(a1);
-
-        Adres a2 = new Adres(1, "3832EK", "3", "laan", "Utrecht", 3);
-        adao.save(a2);
-        adao.delete(a2);
-
-        System.out.print("[Test] Eerst " + adressen.size() + " adressen, na AdresDAO.save() ");
-        System.out.println("\n----------------------------");
-
-        // Haal alle reizigers op uit de database
-        List<Adres> nAdressen = adao.findAll();
-        System.out.println("[Test] AdresDAO.findAll() geeft de volgende adressen:");
-        for (Adres a : nAdressen) {
-            System.out.println(a);
-        }
-        System.out.println();
-
-        adressen = adao.findAll();
-        System.out.println(adressen.size() + " reizigers\n");
-
-        // Delete de net aangemaakt adres
-        adao.delete(a2);
-        adressen = adao.findAll();
-        System.out.println(adressen.size() + " adressen na het verwijderen van de net aangemaakt adres\n");
-        System.out.println("\n----------------------------");
-    }
+//    private static void testAdresDAO(AdresDAO adao) throws SQLException {
+//        System.out.println("\n---------- Test AdresDAO -------------");
+//
+//        // Haal alle reizigers op uit de database
+//        List<Adres> adressen = adao.findAll();
+//        System.out.println("[Test] AdresDAO.findAll() geeft de volgende adressen:");
+//        for (Adres a : adressen) {
+//            System.out.println(a);
+//        }
+//        System.out.println();
+//
+//        // Maak een nieuwe adressen aan en persisteer deze in de database
+//        Adres a1 = new Adres(1, "3812RK", "13", "heidelberglaan", "Utrecht", 8);
+//        adao.save(a1);
+//        adao.delete(a1);
+//
+//        Adres a2 = new Adres(1, "3832EK", "3", "laan", "Utrecht", 9);
+//        adao.save(a2);
+//        adao.delete(a2);
+//
+//        System.out.print("[Test] Eerst " + adressen.size() + " adressen, na AdresDAO.save() ");
+//        System.out.println("\n----------------------------");
+//
+//        // Haal alle reizigers op uit de database
+//        List<Adres> nAdressen = adao.findAll();
+//        System.out.println("[Test] AdresDAO.findAll() geeft de volgende adressen:");
+//        for (Adres a : nAdressen) {
+//            System.out.println(a);
+//        }
+//        System.out.println();
+//
+//        adressen = adao.findAll();
+//        System.out.println(adressen.size() + " reizigers\n");
+//
+//        // Delete de net aangemaakt adres
+//        adao.delete(a2);
+//        adressen = adao.findAll();
+//        System.out.println(adressen.size() + " adressen na het verwijderen van de net aangemaakt adres\n");
+//        System.out.println("\n----------------------------");
+//    }
 }
