@@ -3,7 +3,6 @@ package ovchip.p2_p3_p4;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ReizigerDAOPsql implements ReizigerDAO {
@@ -164,7 +163,7 @@ public class ReizigerDAOPsql implements ReizigerDAO {
             rs.close();
             return reizigers;
         }catch (SQLException e){
-            System.err.println("[SQLException " + e.getMessage());
+            System.err.println("[SQLException] " + e.getMessage());
             return null;
         }
     }
