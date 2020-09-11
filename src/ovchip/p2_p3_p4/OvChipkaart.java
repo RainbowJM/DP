@@ -1,15 +1,17 @@
 package ovchip.p2_p3_p4;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
-public class Ov_chipkaart {
+public class OvChipkaart {
     private int kaart_nummer;
     private Date geldig_tot;
     private int klasse;
     private int saldo;
     private int id;
+    private ArrayList<Reiziger> reizigers = new ArrayList<>();
 
-    public Ov_chipkaart(int kaart_nummer, Date geldig_tot, int klasse, int saldo, int id) {
+    public OvChipkaart(int kaart_nummer, Date geldig_tot, int klasse, int saldo, int id) {
         this.kaart_nummer = kaart_nummer;
         this.geldig_tot = geldig_tot;
         this.klasse = klasse;
@@ -17,6 +19,9 @@ public class Ov_chipkaart {
         this.id = id;
     }
 
+    public void voegReiziger(Reiziger reiziger){
+        reizigers.add(reiziger);
+    }
 
     // getters
     public int getKaart_nummer() {

@@ -12,7 +12,7 @@ public interface AdresDAO {
 
     public Adres findById(int id);
 
-    public List<Adres> findByReiziger(Adres reiziger_id);
+    public Adres findByReiziger(Reiziger reiziger);
 
     public List<Adres> findAll();
 }

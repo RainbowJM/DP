@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdresDAOPsql implements AdresDAO{
-    Connection conn;
-    ReizigerDAO rdao;
+    private  Connection conn;
+    private ReizigerDAO rdao;
 
     public AdresDAOPsql(Connection conn){
         this.conn = conn;
+    }
+
+    public void setRdao(ReizigerDAO rdao) {
+        this.rdao = rdao;
     }
 
     @Override
@@ -81,10 +85,9 @@ public class AdresDAOPsql implements AdresDAO{
     }
 
     @Override
-    public List<Adres> findByReiziger(Adres reiziger_id) {
+    public Adres findByReiziger(Reiziger reiziger) {
         return null;
     }
-
 
     @Override
     public List<Adres> findAll() {

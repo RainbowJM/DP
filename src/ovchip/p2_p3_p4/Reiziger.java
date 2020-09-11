@@ -10,7 +10,7 @@ public class Reiziger {
     private String achternaam;
     private Date geboortedatum;
     private Adres adres;
-    private ArrayList<Ov_chipkaart> ov_chipkaarten = new ArrayList<Ov_chipkaart>();
+    private ArrayList<OvChipkaart> ovChipkaarten = new ArrayList<OvChipkaart>();
 
     public Reiziger(int id, String fletters, String midden, String lletters, Date birthdate){
         reiziger_id = id;
@@ -20,8 +20,8 @@ public class Reiziger {
         geboortedatum = birthdate;
     }
 
-    public void voegOvChipkaarten(Ov_chipkaart nweOvChipkaart){
-        ov_chipkaarten.add(nweOvChipkaart);
+    public void voegOvChipkaarten(OvChipkaart nweOvChipkaart){
+        ovChipkaarten.add(nweOvChipkaart);
     }
 
     // getters
