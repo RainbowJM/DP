@@ -1,4 +1,6 @@
-package ovchip.p2_p3_p4;
+package ovchip.p2_p3_p4.domain;
+
+import ovchip.p2_p3_p4.domain.Reiziger;
 
 import java.sql.Date;
 import java.util.ArrayList;

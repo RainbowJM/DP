@@ -1,5 +1,10 @@
 package ovchip.p2_p3_p4;
 
+import ovchip.p2_p3_p4.dao.AdresDAOPsql;
+import ovchip.p2_p3_p4.dao.ReizigerDAO;
+import ovchip.p2_p3_p4.dao.ReizigerDAOPsql;
+import ovchip.p2_p3_p4.domain.Reiziger;
+
 import java.sql.*;
 import java.util.List;
 
@@ -8,12 +13,13 @@ public class Main {
 
     public static void main(String[] args) {
         try{
-            ReizigerDAO rdao = new ReizigerDAOPsql(getConnection());
-//            AdresDAO adao = new AdresDAOPsql(conn);
+            ReizigerDAOPsql rdao = new ReizigerDAOPsql(getConnection());
+            AdresDAOPsql adao = new AdresDAOPsql(getConnection());
+            rdao.setAdao(adao);
             testReizigerDAO(rdao);
 //            testAdresDAO(adao);
         }catch (Exception e){
-            System.err.println("[Exception] " + e.getMessage());
+            e.printStackTrace();
             closeConnection();
         }
     }
@@ -22,7 +28,6 @@ public class Main {
         String url = "jdbc:postgresql://localhost:5433/ovchip";
         try {
             connection = DriverManager.getConnection(url, "postgres", "1234qwer");
-//            return connection;
         } catch (SQLException e){
             System.err.println("[SQLException] " + e.getMessage());
         }
@@ -53,7 +58,7 @@ public class Main {
         for (Reiziger r : reizigers) {
             System.out.println(r);
         }
-        System.out.println();
+        System.out.println("------");
 
         // Maak een nieuwe reizigers aan en persisteer deze in de database
         String gbdatum1 = "1981-03-14";

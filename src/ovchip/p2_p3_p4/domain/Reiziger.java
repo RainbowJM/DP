@@ -1,4 +1,4 @@
-package ovchip.p2_p3_p4;
+package ovchip.p2_p3_p4.domain;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -83,7 +83,7 @@ public class Reiziger {
                 ", voorletters= " + voorletters +
                 ", tussenvoegsel= " + tussenvoegsel +
                 ", achternaam= " + achternaam +
-                ", geboortedatum= " + geboortedatum +
-                ", adres= " + adres.toString();
+                ", geboortedatum= " + geboortedatum+
+                ",adres= " + adres.toString();
     }
 }

@@ -1,10 +1,15 @@
-package ovchip.p2_p3_p4;
+package ovchip.p2_p3_p4.dao;
+
+import ovchip.p2_p3_p4.dao.AdresDAO;
+import ovchip.p2_p3_p4.dao.ReizigerDAO;
+import ovchip.p2_p3_p4.domain.Adres;
+import ovchip.p2_p3_p4.domain.Reiziger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdresDAOPsql implements AdresDAO{
+public class AdresDAOPsql implements AdresDAO {
     private  Connection conn;
     private ReizigerDAO rdao;
 
@@ -81,19 +86,68 @@ public class AdresDAOPsql implements AdresDAO{
     @Override
     public Adres findById(int id) {
         Adres adres = null;
-        return null;
+        try{
+            String query = "SELECT *FROM adres WHERE id =?;";
+
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setInt(1, id);
+
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()){
+                int idA = rs.getInt("id");
+                String pc = rs.getString("postcode");
+                String hn = rs.getString("huisnummer");
+                String st = rs.getString("straat");
+                String wp = rs.getString("woonplaats");
+                int idR = rs.getInt("reiziger_id");
+
+                adres = new Adres(idA,pc,hn,st,wp,idR);
+            }
+
+            pst.close();
+            rs.close();
+        }catch (SQLException e){
+            System.err.println("[SQLException] " + e.getMessage());
+        }
+        return adres;
     }
 
     @Override
     public Adres findByReiziger(Reiziger reiziger) {
-        return null;
+        Adres adres = null;
+        try{
+            String query = "SELECT * FROM adres WHERE reiziger_id = ?;";
+
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setInt(1, reiziger.getReiziger_id());
+
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                int idA = rs.getInt("adres_id");
+                String pc = rs.getString("postcode");
+                String hn = rs.getString("huisnummer");
+                String s = rs.getString("straat");
+                String wp = rs.getString("woonplaats");
+                int idR = rs.getInt("reiziger_id");
+
+                adres = new Adres(idA,pc,hn,s,wp,idR);
+            }
+            pst.close();
+            rs.close();
+        }catch(SQLException e){
+            System.err.println("[SQLException] " + e.getMessage());
+        }
+        return adres;
     }
+
 
     @Override
     public List<Adres> findAll() {
         List<Adres> adressen = new ArrayList<>();
         try {
-            String query = "SE";
+            String query = "SELECT * FROM adres ORDER BY id;";
 
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);

@@ -1,5 +1,9 @@
-package ovchip.p2_p3_p4;
+package ovchip.p2_p3_p4.dao;
 
+
+import ovchip.p2_p3_p4.dao.AdresDAO;
+import ovchip.p2_p3_p4.dao.ReizigerDAO;
+import ovchip.p2_p3_p4.domain.Reiziger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -160,7 +164,7 @@ public class ReizigerDAOPsql implements ReizigerDAO {
                 String anaam = rs.getString("achternaam");
                 Date date = rs.getDate("geboortedatum");
 
-                reiziger = new Reiziger(idR,le, t, anaam,date);
+                reiziger = new Reiziger(idR,le,t,anaam,date);
                 reiziger.setAdres(adao.findByReiziger(reiziger));
                 reizigers.add(reiziger);
             }
@@ -169,7 +173,7 @@ public class ReizigerDAOPsql implements ReizigerDAO {
             rs.close();
             return reizigers;
         }catch (SQLException e){
-            System.err.println("[SQLException] " + e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
