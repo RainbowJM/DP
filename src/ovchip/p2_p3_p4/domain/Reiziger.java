@@ -79,11 +79,12 @@ public class Reiziger {
     @Override
     public String toString() {
         return "Reiziger: " +
-                "reiziger_id= " + reiziger_id +
-                ", voorletters= " + voorletters +
-                ", tussenvoegsel= " + tussenvoegsel +
-                ", achternaam= " + achternaam +
-                ", geboortedatum= " + geboortedatum+
-                ",adres= " + (adres == null ? "Onbekend" : adres.toString());
+                "reiziger_id = " + reiziger_id +
+                ", voorletters = " + voorletters +
+                ", tussenvoegsel = " + tussenvoegsel +
+                ", achternaam = " + achternaam +
+                ", geboortedatum = " + geboortedatum+
+                ", adres = " + (adres == null ? "Onbekend" : adres.toString()) +
+                ", ovchipkaart = " + ovChipkaarten.toString();
     }
 }
