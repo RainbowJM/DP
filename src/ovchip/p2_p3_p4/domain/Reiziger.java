@@ -84,6 +84,6 @@ public class Reiziger {
                 ", tussenvoegsel= " + tussenvoegsel +
                 ", achternaam= " + achternaam +
                 ", geboortedatum= " + geboortedatum+
-                ",adres= " + adres.toString();
+                ",adres= " + (adres == null ? "Onbekend" : adres.toString());
     }
 }
