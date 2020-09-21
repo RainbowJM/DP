@@ -33,6 +33,10 @@ public class ReizigerDAOPsql implements ReizigerDAO {
             pst.setString(3, reiziger.getTussenvoegsel());
             pst.setString(4, reiziger.getAchternaam());
             pst.setDate(5, reiziger.getGeboortedatum());
+            if (reiziger.getAdres() != null){
+                adao.save(reiziger.getAdres());
+            }
+
 
             pst.executeUpdate();
             pst.close();
@@ -54,6 +58,9 @@ public class ReizigerDAOPsql implements ReizigerDAO {
             pst.setString(3, reiziger.getAchternaam());
             pst.setDate(4, reiziger.getGeboortedatum());
             pst.setInt(5, reiziger.getReiziger_id());
+            if (reiziger.getAdres() != null){
+                adao.update(reiziger.getAdres());
+            }
 
 
             pst.executeUpdate();
@@ -72,6 +79,9 @@ public class ReizigerDAOPsql implements ReizigerDAO {
 
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setInt(1, reiziger.getReiziger_id());
+            if (reiziger.getAdres() != null){
+                adao.delete(reiziger.getAdres());
+            }
 
             pst.executeUpdate();
             pst.close();
@@ -101,6 +111,7 @@ public class ReizigerDAOPsql implements ReizigerDAO {
                 Date datum = rs.getDate("geboortedatum");
 
                 reiziger = new Reiziger(idR, le, t,anaam,datum);
+                reiziger.setAdres(adao.findByReiziger(reiziger));
 
             }
 
@@ -134,6 +145,7 @@ public class ReizigerDAOPsql implements ReizigerDAO {
                 Date date = rs.getDate("geboortedatum");
 
                 reiziger = new Reiziger(idR,le, t, anaam, date);
+                reiziger.setAdres(adao.findByReiziger(reiziger));
                 reizigers.add(reiziger);
             }
 
