@@ -16,6 +16,7 @@ public class Main {
             ReizigerDAOPsql rdao = new ReizigerDAOPsql(getConnection());
             AdresDAOPsql adao = new AdresDAOPsql(getConnection());
             rdao.setAdao(adao);
+            adao.setRdao(rdao);
             testReizigerDAO(rdao);
 //            testAdresDAO(adao);
         }catch (Exception e){
