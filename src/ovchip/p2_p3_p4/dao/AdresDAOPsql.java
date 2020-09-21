@@ -24,7 +24,7 @@ public class AdresDAOPsql implements AdresDAO {
     @Override
     public boolean save(Adres adres) {
         try {
-            String query = "INSERT INTO adres (id, postcode, huisnummer, straat, woonplaats, reiziger_id)" +
+            String query = "INSERT INTO adres (adres_id, postcode, huisnummer, straat, woonplaats, reiziger_id)" +
                     "VALUES (?,?,?,?,?,?);";
 
             PreparedStatement pst = conn.prepareStatement(query);
@@ -47,7 +47,7 @@ public class AdresDAOPsql implements AdresDAO {
     @Override
     public boolean update(Adres adres) {
         try{
-            String query = "UPDATE adres SET  id = ?, postcode = ?, huisnummer = ?, straat = ?, woonplaats = ?, reiziger_id = ?";
+            String query = "UPDATE adres SET  adres_id = ?, postcode = ?, huisnummer = ?, straat = ?, woonplaats = ?, reiziger_id = ?";
 
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setInt(1, adres.getId());
@@ -69,7 +69,7 @@ public class AdresDAOPsql implements AdresDAO {
     @Override
     public boolean delete(Adres adres) {
         try{
-            String query = "DELETE FROM adres WHERE id = ?;";
+            String query = "DELETE FROM adres WHERE adres_id = ?;";
 
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setInt(1, adres.getId());
@@ -87,7 +87,7 @@ public class AdresDAOPsql implements AdresDAO {
     public Adres findById(int id) {
         Adres adres = null;
         try{
-            String query = "SELECT *FROM adres WHERE id =?;";
+            String query = "SELECT *FROM adres WHERE adres_id =?;";
 
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setInt(1, id);
@@ -95,7 +95,7 @@ public class AdresDAOPsql implements AdresDAO {
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()){
-                int idA = rs.getInt("id");
+                int idA = rs.getInt("adres_id");
                 String pc = rs.getString("postcode");
                 String hn = rs.getString("huisnummer");
                 String st = rs.getString("straat");
@@ -147,7 +147,7 @@ public class AdresDAOPsql implements AdresDAO {
     public List<Adres> findAll() {
         List<Adres> adressen = new ArrayList<>();
         try {
-            String query = "SELECT * FROM adres ORDER BY id;";
+            String query = "SELECT * FROM adres ORDER BY adres_id;";
 
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -155,7 +155,7 @@ public class AdresDAOPsql implements AdresDAO {
             Adres adres;
 
             while (rs.next()){
-                int idA = rs.getInt("id");
+                int idA = rs.getInt("adres_id");
                 String ps = rs.getString("postcode");
                 String hn = rs.getString("huisnummer");
                 String s = rs.getString("straat");
