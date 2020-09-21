@@ -1,7 +1,5 @@
 package ovchip.p2_p3_p4.domain;
 
-import ovchip.p2_p3_p4.domain.Reiziger;
-
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -10,7 +8,7 @@ public class OvChipkaart {
     private Date geldig_tot;
     private int klasse;
     private int saldo;
-    private int id;
+    private int reiziger_id;
     private ArrayList<Reiziger> reizigers = new ArrayList<>();
 
     public OvChipkaart(int kaart_nummer, Date geldig_tot, int klasse, int saldo, int id) {
@@ -18,7 +16,7 @@ public class OvChipkaart {
         this.geldig_tot = geldig_tot;
         this.klasse = klasse;
         this.saldo = saldo;
-        this.id = id;
+        this.reiziger_id = id;
     }
 
     public void voegReiziger(Reiziger reiziger){
@@ -42,8 +40,12 @@ public class OvChipkaart {
         return saldo;
     }
 
-    public int getId() {
-        return id;
+    public int getReiziger_id() {
+        return reiziger_id;
+    }
+
+    public ArrayList<Reiziger> getReizigers() {
+        return reizigers;
     }
 
     //setters
@@ -64,17 +66,22 @@ public class OvChipkaart {
         this.saldo = saldo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setReiziger_id(int reiziger_id) {
+        this.reiziger_id = reiziger_id;
+    }
+
+    public void setReizigers(ArrayList<Reiziger> reizigers) {
+        this.reizigers = reizigers;
     }
 
     @Override
     public String toString() {
         return "Ov_chipkaart: " +
-                "kaart_nummer=" + kaart_nummer +
-                ", geldig_tot=" + geldig_tot +
-                ", klasse=" + klasse +
-                ", saldo=" + saldo +
-                ", id=" + id;
+                "kaart_nummer = " + kaart_nummer +
+                ", geldig_tot = " + geldig_tot +
+                ", klasse = " + klasse +
+                ", saldo = " + saldo +
+                ", reiziger_id = " + reiziger_id+
+                ", " + reizigers.toString();
     }
 }
