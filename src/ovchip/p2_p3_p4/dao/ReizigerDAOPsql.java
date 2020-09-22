@@ -1,8 +1,5 @@
 package ovchip.p2_p3_p4.dao;
 
-
-import ovchip.p2_p3_p4.dao.AdresDAO;
-import ovchip.p2_p3_p4.dao.ReizigerDAO;
 import ovchip.p2_p3_p4.domain.Reiziger;
 
 import java.sql.*;
@@ -12,6 +9,7 @@ import java.util.List;
 public class ReizigerDAOPsql implements ReizigerDAO {
     private Connection conn;
     private AdresDAO adao;
+    private OvChipkaartDAO odao;
 
     public ReizigerDAOPsql(Connection conn){
         this.conn = conn;
@@ -19,6 +17,10 @@ public class ReizigerDAOPsql implements ReizigerDAO {
 
     public void setAdao(AdresDAO adao) {
         this.adao = adao;
+    }
+
+    public void setOdao(OvChipkaartDAO odao) {
+        this.odao = odao;
     }
 
     @Override
