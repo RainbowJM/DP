@@ -43,7 +43,7 @@ public class OvChipkaartDAOsql implements OvChipkaartDAO{
     }
 
     @Override
-    public List<OvChipkaart> findall() {
+    public List<OvChipkaart> findAll() {
         return null;
     }
 }
