@@ -17,5 +17,5 @@ public interface OvChipkaartDAO {
 
     List<OvChipkaart> findByReiziger(Reiziger reiziger);
 
-    List<OvChipkaart> findall();
+    List<OvChipkaart> findAll();
 }
