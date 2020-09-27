@@ -1,4 +1,4 @@
-package ovchip.p2_p3_p4.domain;
+package ovchip.p2_p3_p4_p5.domain;
 
 public class Product {
     private int product_nummer;

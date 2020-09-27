@@ -1,8 +1,8 @@
-package ovchip.p2_p3_p4;
+package ovchip.p2_p3_p4_p5;
 
-import ovchip.p2_p3_p4.dao.*;
-import ovchip.p2_p3_p4.domain.Adres;
-import ovchip.p2_p3_p4.domain.Reiziger;
+import ovchip.p2_p3_p4_p5.dao.*;
+import ovchip.p2_p3_p4_p5.domain.Adres;
+import ovchip.p2_p3_p4_p5.domain.Reiziger;
 
 import java.sql.*;
 import java.util.List;

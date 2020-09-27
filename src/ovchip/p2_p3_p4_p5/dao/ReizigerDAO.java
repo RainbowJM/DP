@@ -1,6 +1,6 @@
-package ovchip.p2_p3_p4.dao;
+package ovchip.p2_p3_p4_p5.dao;
 
-import ovchip.p2_p3_p4.domain.Reiziger;
+import ovchip.p2_p3_p4_p5.domain.Reiziger;
 
 import java.util.List;
 
