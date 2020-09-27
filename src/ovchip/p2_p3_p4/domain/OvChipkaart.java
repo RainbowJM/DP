@@ -2,6 +2,7 @@ package ovchip.p2_p3_p4.domain;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 public class OvChipkaart {
     private int kaart_nummer;
@@ -9,7 +10,7 @@ public class OvChipkaart {
     private int klasse;
     private int saldo;
     private int reiziger_id;
-    private ArrayList<Reiziger> reizigers = new ArrayList<>();
+    private Reiziger reiziger;
 
     public OvChipkaart(int kaart_nummer, Date geldig_tot, int klasse, int saldo, int id) {
         this.kaart_nummer = kaart_nummer;
@@ -17,10 +18,6 @@ public class OvChipkaart {
         this.klasse = klasse;
         this.saldo = saldo;
         this.reiziger_id = id;
-    }
-
-    public void voegReiziger(Reiziger reiziger){
-        reizigers.add(reiziger);
     }
 
     // getters
@@ -44,10 +41,9 @@ public class OvChipkaart {
         return reiziger_id;
     }
 
-    public ArrayList<Reiziger> getReizigers() {
-        return reizigers;
+    public Reiziger getReiziger() {
+        return reiziger;
     }
-
     //setters
 
     public void setKaart_nummer(int kaart_nummer) {
@@ -70,8 +66,8 @@ public class OvChipkaart {
         this.reiziger_id = reiziger_id;
     }
 
-    public void setReizigers(ArrayList<Reiziger> reizigers) {
-        this.reizigers = reizigers;
+    public void setReiziger(Reiziger reiziger) {
+        this.reiziger = reiziger;
     }
 
     @Override
@@ -82,6 +78,6 @@ public class OvChipkaart {
                 ", klasse = " + klasse +
                 ", saldo = " + saldo +
                 ", reiziger_id = " + reiziger_id+
-                ", " + reizigers.toString();
+                ", " + reiziger.toString();
     }
 }

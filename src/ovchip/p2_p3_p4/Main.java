@@ -26,7 +26,6 @@ public class Main {
             testReizigerDAO(rdao);
             testAdresDAO(adao);
             testOvChipkaartDAO(odao);
-
         }catch (Exception e){
             e.printStackTrace();
             closeConnection();

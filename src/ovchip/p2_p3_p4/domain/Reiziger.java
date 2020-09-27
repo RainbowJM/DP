@@ -2,6 +2,7 @@ package ovchip.p2_p3_p4.domain;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Reiziger {
     private int reiziger_id;
@@ -10,7 +11,7 @@ public class Reiziger {
     private String achternaam;
     private Date geboortedatum;
     private Adres adres;
-    private ArrayList<OvChipkaart> ovChipkaarten = new ArrayList<OvChipkaart>();
+    private List<OvChipkaart> ovChipkaarten = new ArrayList<OvChipkaart>();
 
     public Reiziger(int id, String fletters, String midden, String lletters, Date birthdate){
         reiziger_id = id;
@@ -74,6 +75,10 @@ public class Reiziger {
 
     public void setAdres(Adres adres) {
         this.adres = adres;
+    }
+
+    public void setOvChipkaarten(List<OvChipkaart> ovChipkaarten) {
+        this.ovChipkaarten = ovChipkaarten;
     }
 
     @Override
