@@ -17,6 +17,15 @@ public class Product {
         this.prijs = prijs;
     }
 
+    public void addOvChipkaart(OvChipkaart ov){
+        ovChipkaarten.add(ov);
+
+    }
+
+    public void deleteOvChipkaart(OvChipkaart ov){
+        ovChipkaarten.remove(ov);
+    }
+
     //getters
     public int getProduct_nummer() {
         return product_nummer;
