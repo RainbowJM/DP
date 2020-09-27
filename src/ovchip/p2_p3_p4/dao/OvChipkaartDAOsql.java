@@ -31,9 +31,9 @@ public class OvChipkaartDAOsql implements OvChipkaartDAO{
             pst.setInt(4,ovChipkaart.getSaldo());
             pst.setInt(5,ovChipkaart.getReiziger_id());
 
-//            if (ovChipkaart.getReizigers() != null){
-//                rdao.save(ovChipkaart.getReizigers(ovChipkaart.getReiziger_id()))
-//            }
+            if (ovChipkaart.getReiziger() != null){
+                rdao.save(ovChipkaart.getReiziger());
+            }
             pst.executeUpdate();
             pst.close();
             return true;
@@ -55,9 +55,9 @@ public class OvChipkaartDAOsql implements OvChipkaartDAO{
             pst.setInt(4, ovChipkaart.getSaldo());
             pst.setInt(5, ovChipkaart.getReiziger_id());
 
-            //           if (ovChipkaart.getReizigers() != null){
-//                rdao.save(ovChipkaart.getReizigers(ovChipkaart.getReiziger_id()))
-//            }
+            if (ovChipkaart.getReiziger() != null){
+                rdao.update(ovChipkaart.getReiziger());
+            }
 
             pst.executeUpdate();
             pst.close();
@@ -76,9 +76,9 @@ public class OvChipkaartDAOsql implements OvChipkaartDAO{
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setInt(1, ovChipkaart.getKaart_nummer());
 
-            //           if (ovChipkaart.getReizigers() != null){
-//                rdao.save(ovChipkaart.getReizigers(ovChipkaart.getReiziger_id()))
-//            }
+            if (ovChipkaart.getReiziger() != null){
+                rdao.delete(ovChipkaart.getReiziger());
+            }
 
             pst.executeUpdate();
             pst.close();
@@ -108,7 +108,7 @@ public class OvChipkaartDAOsql implements OvChipkaartDAO{
                 int idR = rs.getInt("reiziger_id");
 
                 ovChipkaart = new OvChipkaart(knr, datum, k, s,idR);
-//                ovChipkaart.voegReiziger(rdao.findById(idR));
+                ovChipkaart.setReiziger(rdao.findById(idR));
             }
             pst.close();
             rs.close();
@@ -139,6 +139,7 @@ public class OvChipkaartDAOsql implements OvChipkaartDAO{
                 int idR = rs.getInt("reiziger_id");
 
                 ovChipkaart = new OvChipkaart(knr,datum,k,s,idR);
+                ovChipkaart.setReiziger(ovChipkaart.getReiziger());
                 ovChipkaarten.add(ovChipkaart);
             }
             pst.close();
