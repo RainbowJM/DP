@@ -1,11 +1,14 @@
 package ovchip.p2_p3_p4_p5.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Product {
     private int product_nummer;
     private String naam;
     private String beschrijving;
     private int prijs;
-    private OvChipkaart ovChipkaart;
+    private List<OvChipkaart> ovChipkaarten = new ArrayList<>();
 
     public Product(int product_nummer, String naam, String beschrijving, int prijs) {
         this.product_nummer = product_nummer;
@@ -31,8 +34,8 @@ public class Product {
         return prijs;
     }
 
-    public OvChipkaart getOvChipkaart() {
-        return ovChipkaart;
+    public List<OvChipkaart> getOvChipkaarten() {
+        return ovChipkaarten;
     }
 
     //setters
@@ -52,8 +55,8 @@ public class Product {
         this.prijs = prijs;
     }
 
-    public void setOvChipkaart(OvChipkaart ovChipkaart) {
-        this.ovChipkaart = ovChipkaart;
+    public void setOvChipkaarten(List<OvChipkaart> ovChipkaarten) {
+        this.ovChipkaarten = ovChipkaarten;
     }
 
     @Override
