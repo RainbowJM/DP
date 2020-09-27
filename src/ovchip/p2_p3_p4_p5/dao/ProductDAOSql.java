@@ -17,7 +17,7 @@ public class ProductDAOSql implements ProductDAO{
     public void setOdao(OvChipkaartDAO odao){
         this.odao = odao;
     }
-    @Override
+    @Override 
     public boolean save(Product product) {
         try{
             String query = "INSERT INTO product (product_nummer, naam, beschrijving, prijs)" +
