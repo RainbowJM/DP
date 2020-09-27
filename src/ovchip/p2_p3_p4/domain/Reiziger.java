@@ -90,6 +90,6 @@ public class Reiziger {
                 ", achternaam = " + achternaam +
                 ", geboortedatum = " + geboortedatum+
                 ", " + (adres == null ? "Adres: null" : adres.toString()) +
-                ", " + ovChipkaarten.toString();
+                ", " + (ovChipkaarten == null ? "Ovchipkaart: null" : ovChipkaarten.toString());
     }
 }

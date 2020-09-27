@@ -78,6 +78,6 @@ public class OvChipkaart {
                 ", klasse = " + klasse +
                 ", saldo = " + saldo +
                 ", reiziger_id = " + reiziger_id+
-                ", " + reiziger.toString();
+                ", " + (reiziger == null ? "Reiziger: null" : reiziger.toString());
     }
 }
