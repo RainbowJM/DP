@@ -114,7 +114,6 @@ public class ReizigerDAOPsql implements ReizigerDAO {
 
                 reiziger = new Reiziger(idR, le, t,anaam,datum);
                 reiziger.setAdres(adao.findByReiziger(reiziger));
-
             }
 
             pst.close();
@@ -180,6 +179,7 @@ public class ReizigerDAOPsql implements ReizigerDAO {
 
                 reiziger = new Reiziger(idR,le,t,anaam,date);
                 reiziger.setAdres(adao.findByReiziger(reiziger));
+                reiziger.setOvChipkaarten(odao.findByReiziger(reiziger));
                 reizigers.add(reiziger);
             }
 
