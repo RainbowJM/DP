@@ -13,7 +13,7 @@ public interface OvChipkaartDAO {
 
     boolean delete(OvChipkaart ovChipkaart);
 
-    OvChipkaart findById(int id);
+    OvChipkaart findByNummer(int kaart_nummer);
 
     List<OvChipkaart> findByReiziger(Reiziger reiziger);
 
