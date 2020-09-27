@@ -10,14 +10,19 @@ import java.util.List;
 public class OvChipkaartDAOsql implements OvChipkaartDAO{
     private Connection conn;
     private ReizigerDAO rdao;
+    private ProductDAO pdao;
 
     public  OvChipkaartDAOsql(Connection conn){
         this.conn = conn;
     }
+
     public void setRdao(ReizigerDAO rdao) {
         this.rdao = rdao;
     }
 
+    public void setPdao(ProductDAO pdao){
+        this.pdao = pdao;
+    }
     @Override
     public boolean save(OvChipkaart ovChipkaart) {
         try{

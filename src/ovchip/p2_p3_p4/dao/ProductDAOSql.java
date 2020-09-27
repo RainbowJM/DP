@@ -8,9 +8,14 @@ import java.sql.SQLException;
 
 public class ProductDAOSql implements ProductDAO{
     private Connection conn;
+    private OvChipkaartDAO odao;
 
     public ProductDAOSql(Connection conn){
         this.conn = conn;
+    }
+
+    public void setOdao(OvChipkaartDAO odao){
+        this.odao = odao;
     }
     @Override
     public boolean save(Product product) {

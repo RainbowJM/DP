@@ -15,11 +15,14 @@ public class Main {
             ReizigerDAOPsql rdao = new ReizigerDAOPsql(getConnection());
             AdresDAOPsql adao = new AdresDAOPsql(getConnection());
             OvChipkaartDAOsql odao = new OvChipkaartDAOsql(getConnection());
+            ProductDAOSql pdao = new ProductDAOSql(getConnection());
 
             //Connecting DAO's
             rdao.setAdao(adao);
             rdao.setOdao(odao);
             odao.setRdao(rdao);
+            odao.setPdao(pdao);
+            pdao.setOdao(odao);
 
             //testDAO
             testReizigerDAO(rdao);
