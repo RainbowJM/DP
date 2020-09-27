@@ -5,6 +5,7 @@ public class Product {
     private String naam;
     private String beschrijving;
     private int prijs;
+    private OvChipkaart ovChipkaart;
 
     public Product(int product_nummer, String naam, String beschrijving, int prijs) {
         this.product_nummer = product_nummer;
@@ -30,6 +31,10 @@ public class Product {
         return prijs;
     }
 
+    public OvChipkaart getOvChipkaart() {
+        return ovChipkaart;
+    }
+
     //setters
     public void setProduct_nummer(int product_nummer) {
         this.product_nummer = product_nummer;
@@ -45,6 +50,10 @@ public class Product {
 
     public void setPrijs(int prijs) {
         this.prijs = prijs;
+    }
+
+    public void setOvChipkaart(OvChipkaart ovChipkaart) {
+        this.ovChipkaart = ovChipkaart;
     }
 
     @Override

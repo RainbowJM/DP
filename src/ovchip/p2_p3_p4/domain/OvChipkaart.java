@@ -11,6 +11,7 @@ public class OvChipkaart {
     private int saldo;
     private int reiziger_id;
     private Reiziger reiziger;
+    private List<Product> producten = new ArrayList<>();
 
     public OvChipkaart(int kaart_nummer, Date geldig_tot, int klasse, int saldo, int id) {
         this.kaart_nummer = kaart_nummer;
@@ -44,6 +45,11 @@ public class OvChipkaart {
     public Reiziger getReiziger() {
         return reiziger;
     }
+
+    public List<Product> getProducten() {
+        return producten;
+    }
+
     //setters
 
     public void setKaart_nummer(int kaart_nummer) {
@@ -68,6 +74,10 @@ public class OvChipkaart {
 
     public void setReiziger(Reiziger reiziger) {
         this.reiziger = reiziger;
+    }
+
+    public void setProducten(List<Product> producten) {
+        this.producten = producten;
     }
 
     @Override

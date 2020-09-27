@@ -21,10 +21,6 @@ public class Reiziger {
         geboortedatum = birthdate;
     }
 
-    public void voegOvChipkaarten(OvChipkaart nweOvChipkaart){
-        ovChipkaarten.add(nweOvChipkaart);
-    }
-
     // getters
 
     public int getReiziger_id() {
