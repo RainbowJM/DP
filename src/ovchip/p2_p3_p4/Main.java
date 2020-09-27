@@ -2,7 +2,6 @@ package ovchip.p2_p3_p4;
 
 import ovchip.p2_p3_p4.dao.*;
 import ovchip.p2_p3_p4.domain.Adres;
-import ovchip.p2_p3_p4.domain.OvChipkaart;
 import ovchip.p2_p3_p4.domain.Reiziger;
 
 import java.sql.*;
@@ -25,7 +24,7 @@ public class Main {
             //testDAO
             testReizigerDAO(rdao);
             testAdresDAO(adao);
-            testOvChipkaartDAO(odao);
+
         }catch (Exception e){
             e.printStackTrace();
             closeConnection();
@@ -152,46 +151,46 @@ public class Main {
         System.out.println("\n----------------------------");
     }
 
-    private static void testOvChipkaartDAO(OvChipkaartDAO odao) throws SQLException {
-        System.out.println("\n---------- Test OvChipkaartDAO -------------");
-
-        // Haal alle ovchipkaarten op uit de database
-        List<OvChipkaart> ovChipkaarten = odao.findAll();
-        System.out.println("[Test] OvChipkaartDAO.findAll() geeft de volgende ovchipkaarten:");
-        for (OvChipkaart o : ovChipkaarten) {
-            System.out.println(o);
-        }
-        System.out.println();
-
-        // Maak een nieuwe ovchipkaarten aan en persisteer deze in de database
-        String gdatum1 = "2030-03-14";
-        OvChipkaart o1 = new OvChipkaart(1, java.sql.Date.valueOf(gdatum1),1,15,1);
-        odao.save(o1);
-        //odao.delete(o1);
-
-        String gdatum2 = "2050-03-21";
-        OvChipkaart o2 = new OvChipkaart(2, java.sql.Date.valueOf(gdatum2),2,40,2);
-        odao.save(o2);
-        //odao.delete(o2);
-
-        System.out.print("[Test] Eerst " + ovChipkaarten.size() + " ovchipkaarten, na OvChipkaartDAO.save() ");
-        System.out.println("\n----------------------------");
-
-        // Haal alle reizigers op uit de database
-        List<OvChipkaart> nOvChipkaarten = odao.findAll();
-        System.out.println("[Test] OvChipkaartDAO.findAll() geeft de volgende ovchipkaarten:");
-        for (OvChipkaart o : nOvChipkaarten) {
-            System.out.println(o);
-        }
-        System.out.println();
-
-        ovChipkaarten = odao.findAll();
-        System.out.println(ovChipkaarten.size() + " ovchipkaarten\n");
-
-        // Delete de net aangemaakt adres
-        odao.delete(o2);
-        ovChipkaarten = odao.findAll();
-        System.out.println(ovChipkaarten.size() + " ovchipkaarten na het verwijderen van de net aangemaakt ovchipkaart\n");
-        System.out.println("\n----------------------------");
-    }
+//    private static void testOvChipkaartDAO(OvChipkaartDAO odao) throws SQLException {
+//        System.out.println("\n---------- Test OvChipkaartDAO -------------");
+//
+//        // Haal alle ovchipkaarten op uit de database
+//        List<OvChipkaart> ovChipkaarten = odao.findAll();
+//        System.out.println("[Test] OvChipkaartDAO.findAll() geeft de volgende ovchipkaarten:");
+//        for (OvChipkaart o : ovChipkaarten) {
+//            System.out.println(o);
+//        }
+//        System.out.println();
+//
+//        // Maak een nieuwe ovchipkaarten aan en persisteer deze in de database
+//        String gdatum1 = "2030-03-14";
+//        OvChipkaart o1 = new OvChipkaart(1, java.sql.Date.valueOf(gdatum1),1,15,1);
+//        odao.save(o1);
+//        //odao.delete(o1);
+//
+//        String gdatum2 = "2050-03-21";
+//        OvChipkaart o2 = new OvChipkaart(2, java.sql.Date.valueOf(gdatum2),2,40,2);
+//        odao.save(o2);
+//        //odao.delete(o2);
+//
+//        System.out.print("[Test] Eerst " + ovChipkaarten.size() + " ovchipkaarten, na OvChipkaartDAO.save() ");
+//        System.out.println("\n----------------------------");
+//
+//        // Haal alle reizigers op uit de database
+//        List<OvChipkaart> nOvChipkaarten = odao.findAll();
+//        System.out.println("[Test] OvChipkaartDAO.findAll() geeft de volgende ovchipkaarten:");
+//        for (OvChipkaart o : nOvChipkaarten) {
+//            System.out.println(o);
+//        }
+//        System.out.println();
+//
+//        ovChipkaarten = odao.findAll();
+//        System.out.println(ovChipkaarten.size() + " ovchipkaarten\n");
+//
+//        // Delete de net aangemaakt adres
+//        odao.delete(o2);
+//        ovChipkaarten = odao.findAll();
+//        System.out.println(ovChipkaarten.size() + " ovchipkaarten na het verwijderen van de net aangemaakt ovchipkaart\n");
+//        System.out.println("\n----------------------------");
+//    }
 }
