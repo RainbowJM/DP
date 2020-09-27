@@ -35,10 +35,10 @@ public class ReizigerDAOPsql implements ReizigerDAO {
             pst.setString(3, reiziger.getTussenvoegsel());
             pst.setString(4, reiziger.getAchternaam());
             pst.setDate(5, reiziger.getGeboortedatum());
+
             if (reiziger.getAdres() != null){
                 adao.save(reiziger.getAdres());
             }
-
 
             pst.executeUpdate();
             pst.close();
@@ -60,6 +60,7 @@ public class ReizigerDAOPsql implements ReizigerDAO {
             pst.setString(3, reiziger.getAchternaam());
             pst.setDate(4, reiziger.getGeboortedatum());
             pst.setInt(5, reiziger.getReiziger_id());
+
             if (reiziger.getAdres() != null){
                 adao.update(reiziger.getAdres());
             }
@@ -81,6 +82,7 @@ public class ReizigerDAOPsql implements ReizigerDAO {
 
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setInt(1, reiziger.getReiziger_id());
+
             if (reiziger.getAdres() != null){
                 adao.delete(reiziger.getAdres());
             }
