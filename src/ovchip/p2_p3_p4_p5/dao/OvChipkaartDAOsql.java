@@ -144,7 +144,7 @@ public class OvChipkaartDAOsql implements OvChipkaartDAO{
                 int idR = rs.getInt("reiziger_id");
 
                 ovChipkaart = new OvChipkaart(knr,datum,k,s,idR);
-                ovChipkaart.setReiziger(ovChipkaart.getReiziger());
+                ovChipkaart.setReiziger(rdao.findById(idR));
                 ovChipkaarten.add(ovChipkaart);
             }
             pst.close();
@@ -175,7 +175,7 @@ public class OvChipkaartDAOsql implements OvChipkaartDAO{
                 int idR = rs.getInt("reiziger_id");
 
                 ovChipkaart = new OvChipkaart(knr,datum,k,s,idR);
-                ovChipkaart.setReiziger(ovChipkaart.getReiziger());
+                ovChipkaart.setReiziger(rdao.findById(idR));
                 ovChipkaarten.add(ovChipkaart);
             }
             st.close();
