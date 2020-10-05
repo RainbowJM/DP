@@ -1,10 +1,11 @@
 package ovchip.p2_p3_p4_p5.dao;
 
+import ovchip.p2_p3_p4_p5.domain.OvChipkaart;
 import ovchip.p2_p3_p4_p5.domain.Product;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDAOSql implements ProductDAO{
     private Connection conn;
@@ -17,7 +18,7 @@ public class ProductDAOSql implements ProductDAO{
     public void setOdao(OvChipkaartDAO odao){
         this.odao = odao;
     }
-    @Override 
+    @Override
     public boolean save(Product product) {
         try{
             String query = "INSERT INTO product (product_nummer, naam, beschrijving, prijs)" +
@@ -28,6 +29,8 @@ public class ProductDAOSql implements ProductDAO{
             pst.setString(2, product.getNaam());
             pst.setString(3, product.getBeschrijving());
             pst.setInt(4, product.getPrijs());
+
+//            product.addOvChipkaart(findByOVChipkaart());
 
             pst.executeUpdate();
             pst.close();
@@ -72,6 +75,81 @@ public class ProductDAOSql implements ProductDAO{
         }catch (SQLException e){
             System.err.println("[SQLException] " + e.getMessage());
             return false;
+        }
+    }
+
+    @Override
+    public List<Product> findByOVChipkaart(OvChipkaart ovChipkaart) {
+        List<Product> products = new ArrayList<>();
+        try {
+            String query =
+                    "SELECT * FROM product LEFT JOIN ov_chipkaart_product ocp on pro.product_nummer = ocp.product_nummer where kaart_nummer = ?";
+
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setInt(1, ovChipkaart.getKaart_nummer());
+
+            ResultSet rs = pst.executeQuery();
+
+            OvChipkaart ov;
+            Product product;
+
+            if (rs.next()){
+                int knr = rs.getInt("kaart_nummer");
+                Date datum = rs.getDate("geldig_tot");
+                int k = rs.getInt("klasse");
+                int s = rs.getInt("saldo");
+                int idR = rs.getInt("reiziger_id");
+
+                int pnr = rs.getInt("product_nummer");
+                String n = rs.getString("naam");
+                String b = rs.getString("beschrijving");
+                int p = rs.getInt("prijs");
+
+                ov = new OvChipkaart(knr,datum,k,s,idR);
+                product = new Product(pnr, n,b,p);
+                product.addOvChipkaart(ov);
+
+                products.add(product);
+            }
+            pst.close();
+            rs.close();
+            return products;
+        }catch (SQLException e){
+            System.err.println("[SQLException] " + e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<Product> findAll() {
+        List<Product> products = new ArrayList<>();
+        try {
+            String query =
+                    "SELECT * FROM product LEFT JOIN ov_chipkaart_product ocp on pro.product_nummer = ocp.product_nummer where kaart_nummer = ?";
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            Product product;
+
+            while (rs.next()){
+                int pnr = rs.getInt("product_nummer");
+                String n = rs.getString("naam");
+                String b = rs.getString("beschrijving");
+                int p = rs.getInt("prijs");
+
+                int knr = rs.getInt("kaart_nummer");
+
+                product = new Product(pnr,n,b,p);
+                product.addOvChipkaart(odao.findByNummer(knr));
+                products.add(product);
+            }
+            st.close();
+            rs.close();
+            return products;
+        }catch (SQLException e){
+            System.err.println("[SQLException] " + e.getMessage());
+            return null;
         }
     }
 }
