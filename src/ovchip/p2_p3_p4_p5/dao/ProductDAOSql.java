@@ -30,7 +30,20 @@ public class ProductDAOSql implements ProductDAO{
             pst.setString(3, product.getBeschrijving());
             pst.setInt(4, product.getPrijs());
 
-//            product.addOvChipkaart(findByOVChipkaart());
+            for (OvChipkaart ov :  product.getOvChipkaarten()) {
+                String queryOv = "INSERT INTO ov_chipkaart (kaart_nummer, geldig_tot, klasse, saldo, reiziger_id)" +
+                        "VALUES (?,?,?,?,?);";
+
+                PreparedStatement pstOv = conn.prepareStatement(queryOv);
+                pstOv.setInt(1, ov.getKaart_nummer());
+                pstOv.setDate(2, ov.getGeldig_tot());
+                pstOv.setInt(3 ,ov.getKlasse());
+                pstOv.setInt(4,ov.getSaldo());
+                pstOv.setInt(5,ov.getReiziger_id());
+
+                pstOv.executeUpdate();
+                pstOv.close();
+            }
 
             pst.executeUpdate();
             pst.close();
@@ -52,6 +65,33 @@ public class ProductDAOSql implements ProductDAO{
             pst.setInt(3, product.getPrijs());
             pst.setInt(4, product.getProduct_nummer());
 
+            for (OvChipkaart ov :  product.getOvChipkaarten()) {
+                String queryOv = "DELETE FROM ov_chipkaart WHERE kaart_nummer = ?;";
+
+                PreparedStatement pstOv = conn.prepareStatement(queryOv);
+                pstOv.setInt(1, ov.getKaart_nummer());
+
+                pstOv.executeUpdate();
+                pstOv.close();
+            }
+
+            for (OvChipkaart ov :  product.getOvChipkaarten()) {
+                String queryOvUp = "INSERT INTO ov_chipkaart (kaart_nummer, geldig_tot, klasse, saldo, reiziger_id)" +
+                        "VALUES (?,?,?,?,?);";
+
+                PreparedStatement pstOvIns = conn.prepareStatement(queryOvUp);
+
+                pstOvIns.setInt(1, ov.getKaart_nummer());
+                pstOvIns.setDate(2, ov.getGeldig_tot());
+                pstOvIns.setInt(3 ,ov.getKlasse());
+                pstOvIns.setInt(4,ov.getSaldo());
+                pstOvIns.setInt(5,ov.getReiziger_id());
+
+                pstOvIns.executeUpdate();
+                pstOvIns.close();
+            }
+
+
             pst.executeUpdate();
             pst.close();
             return true;
@@ -68,6 +108,17 @@ public class ProductDAOSql implements ProductDAO{
 
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setInt(1, product.getProduct_nummer());
+
+            for (OvChipkaart ov :  product.getOvChipkaarten()) {
+                String queryOv = "DELETE FROM ov_chipkaart WHERE kaart_nummer = ?;";
+
+                PreparedStatement pstOv = conn.prepareStatement(queryOv);
+
+                pstOv.setInt(1, ov.getKaart_nummer());
+
+                pstOv.executeUpdate();
+                pstOv.close();
+            }
 
             pst.executeUpdate();
             pst.close();
