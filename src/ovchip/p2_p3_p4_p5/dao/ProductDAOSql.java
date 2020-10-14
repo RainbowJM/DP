@@ -31,18 +31,16 @@ public class ProductDAOSql implements ProductDAO{
             pst.setInt(4, product.getPrijs());
 
             for (OvChipkaart ov :  product.getOvChipkaarten()) {
-                String queryOv = "INSERT INTO ov_chipkaart (kaart_nummer, geldig_tot, klasse, saldo, reiziger_id)" +
-                        "VALUES (?,?,?,?,?);";
+                String queryOvUp = "INSERT INTO ov_chipkaart_product (kaart_nummer, product_nummer)" +
+                        "VALUES (?,?);";
 
-                PreparedStatement pstOv = conn.prepareStatement(queryOv);
-                pstOv.setInt(1, ov.getKaart_nummer());
-                pstOv.setDate(2, ov.getGeldig_tot());
-                pstOv.setInt(3 ,ov.getKlasse());
-                pstOv.setInt(4,ov.getSaldo());
-                pstOv.setInt(5,ov.getReiziger_id());
+                PreparedStatement pstOvIns = conn.prepareStatement(queryOvUp);
 
-                pstOv.executeUpdate();
-                pstOv.close();
+                pstOvIns.setInt(1, ov.getKaart_nummer());
+                pstOvIns.setInt(2, product.getProduct_nummer());
+
+                pstOvIns.executeUpdate();
+                pstOvIns.close();
             }
 
             pst.executeUpdate();
@@ -66,7 +64,7 @@ public class ProductDAOSql implements ProductDAO{
             pst.setInt(4, product.getProduct_nummer());
 
             for (OvChipkaart ov :  product.getOvChipkaarten()) {
-                String queryOv = "DELETE FROM ov_chipkaart WHERE kaart_nummer = ?;";
+                String queryOv = "DELETE FROM ov_chipkaart_product WHERE kaart_nummer = ?;";
 
                 PreparedStatement pstOv = conn.prepareStatement(queryOv);
                 pstOv.setInt(1, ov.getKaart_nummer());
@@ -76,16 +74,14 @@ public class ProductDAOSql implements ProductDAO{
             }
 
             for (OvChipkaart ov :  product.getOvChipkaarten()) {
-                String queryOvUp = "INSERT INTO ov_chipkaart (kaart_nummer, geldig_tot, klasse, saldo, reiziger_id)" +
-                        "VALUES (?,?,?,?,?);";
+                String queryOvUp = "INSERT INTO ov_chipkaart_product (kaart_nummer, product_nummer)" +
+                        "VALUES (?,?);";
 
                 PreparedStatement pstOvIns = conn.prepareStatement(queryOvUp);
 
                 pstOvIns.setInt(1, ov.getKaart_nummer());
-                pstOvIns.setDate(2, ov.getGeldig_tot());
-                pstOvIns.setInt(3 ,ov.getKlasse());
-                pstOvIns.setInt(4,ov.getSaldo());
-                pstOvIns.setInt(5,ov.getReiziger_id());
+                pstOvIns.setInt(2, product.getProduct_nummer());
+
 
                 pstOvIns.executeUpdate();
                 pstOvIns.close();

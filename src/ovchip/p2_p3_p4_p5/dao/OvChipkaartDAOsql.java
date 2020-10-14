@@ -81,9 +81,9 @@ public class OvChipkaartDAOsql implements OvChipkaartDAO{
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setInt(1, ovChipkaart.getKaart_nummer());
 
-            if (ovChipkaart.getReiziger() != null){
-                rdao.delete(ovChipkaart.getReiziger());
-            }
+//            if (ovChipkaart.getReiziger() != null){
+//                rdao.delete(ovChipkaart.getReiziger());
+//            }
 
             pst.executeUpdate();
             pst.close();
