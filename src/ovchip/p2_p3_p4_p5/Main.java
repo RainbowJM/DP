@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         try{
             ReizigerDAOPsql rdao = new ReizigerDAOPsql(getConnection());
-            AdresDAOPsql adao = new AdresDAOPsql(getConnection());
+            AdresDAOSql adao = new AdresDAOSql(getConnection());
             OvChipkaartDAOsql odao = new OvChipkaartDAOsql(getConnection());
             ProductDAOSql pdao = new ProductDAOSql(getConnection());
 

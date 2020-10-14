@@ -7,11 +7,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdresDAOPsql implements AdresDAO {
+public class AdresDAOSql implements AdresDAO {
     private  Connection conn;
     private ReizigerDAO rdao;
 
-    public AdresDAOPsql(Connection conn){
+    public AdresDAOSql(Connection conn){
         this.conn = conn;
     }
 
